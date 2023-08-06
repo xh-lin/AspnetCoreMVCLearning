@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using WebApp.DataAccess.Data;
+using WebApp.DataAccess.Repository;
+using WebApp.DataAccess.Repository.IRepository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +13,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options=>
         new MySqlServerVersion(new Version(8, 0, 31))
     ));
 
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
 var app = builder.Build();
 

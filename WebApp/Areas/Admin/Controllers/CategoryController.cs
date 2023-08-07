@@ -3,15 +3,16 @@ using WebApp.DataAccess.Repository;
 using WebApp.DataAccess.Repository.IRepository;
 using WebApp.Models;
 
-namespace WebApp.Controllers
+namespace WebApp.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
 
         public CategoryController(IUnitOfWork unitOfWork)
         {
-            this._unitOfWork = unitOfWork;
+            _unitOfWork = unitOfWork;
         }
 
         public IActionResult Index()
@@ -20,7 +21,7 @@ namespace WebApp.Controllers
             return View(objCategoryList);
         }
 
-        public IActionResult Create() 
+        public IActionResult Create()
         {
             return View();
         }

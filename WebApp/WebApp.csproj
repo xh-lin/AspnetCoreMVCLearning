@@ -12,6 +12,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.8" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="7.0.0" />
   </ItemGroup>
 
@@ -19,6 +20,10 @@
     <ProjectReference Include="..\WebApp.DataAccess\WebApp.DataAccess.csproj" />
     <ProjectReference Include="..\WebApp.Models\WebApp.Models.csproj" />
     <ProjectReference Include="..\WebApp.Utility\WebApp.Utility.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\" />
   </ItemGroup>
 
 </Project>

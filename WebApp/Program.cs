@@ -13,7 +13,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options=>
         new MySqlServerVersion(new Version(8, 0, 31))
     ));
 
-builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 var app = builder.Build();
 

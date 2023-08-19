@@ -66,7 +66,7 @@ namespace WebApp.Areas.Admin.Controllers
                         file.CopyTo(fileStream);
                     }
 
-                    productVM.Product.ImageUrl = @"\image\product\" + fileName;
+                    productVM.Product.ImageUrl = @"\images\product\" + fileName;
                 }
 
                 _unitOfWork.Product.Add(productVM.Product);

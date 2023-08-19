@@ -31,7 +31,8 @@ namespace WebApp.Areas.Admin.Controllers
                     Value = o.Id.ToString()
                 });
 
-            ViewBag.CategoryList = CategoryList;
+            //ViewBag.CategoryList = CategoryList;
+            ViewData["CategoryList"] = CategoryList;
 
             return View();
         }

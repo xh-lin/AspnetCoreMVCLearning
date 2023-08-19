@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using WebApp.DataAccess.Repository;
 using WebApp.DataAccess.Repository.IRepository;
 using WebApp.Models;
+using WebApp.Models.ViewModels;
 
 namespace WebApp.Areas.Admin.Controllers
 {
@@ -24,31 +25,41 @@ namespace WebApp.Areas.Admin.Controllers
 
         public IActionResult Create()
         {
-            IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category.GetAll()
+            //ViewBag.CategoryList = CategoryList;
+            //ViewData["CategoryList"] = CategoryList;
+            ProductVM productVM = new()
+            {
+                Product = new Product(),
+                CategoryList = _unitOfWork.Category.GetAll()
+                    .Select(o => new SelectListItem 
+                    {
+                        Text = o.Name,
+                        Value = o.Id.ToString()
+                    })
+            };
+
+            return View(productVM);
+        }
+
+        [HttpPost]
+        public IActionResult Create(ProductVM productVM)
+        {
+            if (ModelState.IsValid)
+            {
+                _unitOfWork.Product.Add(productVM.Product);
+                _unitOfWork.Save();
+                TempData["success"] = "Product created successfully";
+                return RedirectToAction("Index");
+            }
+
+            productVM.CategoryList = _unitOfWork.Category.GetAll()
                 .Select(o => new SelectListItem
                 {
                     Text = o.Name,
                     Value = o.Id.ToString()
                 });
 
-            //ViewBag.CategoryList = CategoryList;
-            ViewData["CategoryList"] = CategoryList;
-
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult Create(Product obj)
-        {
-            if (ModelState.IsValid)
-            {
-                _unitOfWork.Product.Add(obj);
-                _unitOfWork.Save();
-                TempData["success"] = "Product created successfully";
-                return RedirectToAction("Index");
-            }
-
-            return View();
+            return View(productVM);
         }
 
         public IActionResult Edit(int? id)

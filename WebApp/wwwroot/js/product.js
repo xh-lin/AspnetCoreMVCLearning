@@ -16,7 +16,7 @@ function loadDataTable() {
                 "render": function (id) {
                     return `<div class="w-75 btn-group" role="group">
                      <a href="/Admin/Product/Upsert?id=${id}" class="btn btn-primary mx-2"> <i class="bi bi-pencil-square"></i> Edit</a>               
-                     <a href="/Admin/Product/Delete?id=${id}" class="btn btn-danger mx-2"> <i class="bi bi-trash-fill"></i> Delete</a>
+                     <a href="/Admin/Product/Delete/${id}" class="btn btn-danger mx-2"> <i class="bi bi-trash-fill"></i> Delete</a>
                     </div>`
                 },
                 "width": "25%"

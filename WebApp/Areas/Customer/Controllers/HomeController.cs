@@ -20,8 +20,14 @@ namespace WebApp.Areas.Customer.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<Product> productlist = _unitOfWork.Product.GetAll(includeProperties:"Category");
+            IEnumerable<Product> productlist = _unitOfWork.Product.GetAll(includeProperties: "Category");
             return View(productlist);
+        }
+
+        public IActionResult Details(int productId)
+        {
+            Product product = _unitOfWork.Product.Get(o => o.Id == productId, includeProperties: "Category");
+            return View(product);
         }
 
         public IActionResult Privacy()

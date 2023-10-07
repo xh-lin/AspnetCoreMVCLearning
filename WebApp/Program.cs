@@ -16,7 +16,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options=>
         new MySqlServerVersion(new Version(8, 0, 31))
     ));
 
-builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
 builder.Services.AddRazorPages();
 

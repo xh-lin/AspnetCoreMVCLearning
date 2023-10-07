@@ -3,6 +3,8 @@ using WebApp.DataAccess.Data;
 using WebApp.DataAccess.Repository;
 using WebApp.DataAccess.Repository.IRepository;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using WebApp.Utility;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,11 +16,13 @@ builder.Services.AddDbContext<ApplicationDbContext>(options=>
         new MySqlServerVersion(new Version(8, 0, 31))
     ));
 
-builder.Services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddRazorPages();
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+builder.Services.AddScoped<IEmailSender, EmailSender>();
 
 var app = builder.Build();
 

@@ -122,7 +122,7 @@ namespace WebApp.Areas.Identity.Pages.Account
             public string? PostalCode { get; set; }
             public string? PhoneNumber { get; set; }
 
-            public string? CompanyId { get; set; }
+            public int? CompanyId { get; set; }
 
             [ValidateNever]
             public IEnumerable<SelectListItem> CompanyList { get; set; }
@@ -173,6 +173,12 @@ namespace WebApp.Areas.Identity.Pages.Account
                 user.City = Input.City;
                 user.State = Input.State;
                 user.PostalCode = Input.PostalCode;
+
+                if (Input.Role == SD.Role_Company)
+                {
+                    user.CompanyId = Input.CompanyId;
+                }
+
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)

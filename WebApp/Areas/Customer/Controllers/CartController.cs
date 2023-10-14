@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using WebApp.DataAccess.Repository.IRepository;
+using WebApp.Models;
 using WebApp.Models.ViewModels;
 
 namespace WebApp.Areas.Customer.Controllers
@@ -30,7 +31,29 @@ namespace WebApp.Areas.Customer.Controllers
                         includeProperties: "Product")
             };
 
+            foreach (var cart in ShoppingCartVM.ShoppingCartList)
+            {
+                cart.Price = GetPriceBasedOnQuatity(cart);
+                ShoppingCartVM.OrderTotal += cart.Price * cart.Count;
+            }
+
             return View(ShoppingCartVM);
+        }
+
+        private double GetPriceBasedOnQuatity(ShoppingCart shoppingCart)
+        {
+            if (shoppingCart.Count <= 50)
+            {
+                return shoppingCart.Product.Price;
+            }
+            else if (shoppingCart.Count <= 100)
+            {
+                return shoppingCart.Product.Price50;
+            }
+            else
+            {
+                return shoppingCart.Product.Price100;
+            }
         }
     }
 }

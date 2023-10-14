@@ -40,6 +40,39 @@ namespace WebApp.Areas.Customer.Controllers
             return View(ShoppingCartVM);
         }
 
+        public IActionResult Plus(int cartId) 
+        {
+            var cartromDb = _unitOfWork.ShoppingCart.Get(u => u.Id == cartId);
+            cartromDb.Count += 1;
+            _unitOfWork.ShoppingCart.Update(cartromDb);
+            _unitOfWork.Save();
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Minus(int cartId) 
+        {
+            var cartromDb = _unitOfWork.ShoppingCart.Get(u => u.Id == cartId);
+            if (cartromDb.Count <= 1)
+            {
+                _unitOfWork.ShoppingCart.Remove(cartromDb);
+            } 
+            else
+            {
+                cartromDb.Count -= 1;
+                _unitOfWork.ShoppingCart.Update(cartromDb);
+            }
+            _unitOfWork.Save();
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Remove(int cartId) 
+        {
+            var cartromDb = _unitOfWork.ShoppingCart.Get(u => u.Id == cartId);
+            _unitOfWork.ShoppingCart.Remove(cartromDb);
+            _unitOfWork.Save();
+            return RedirectToAction(nameof(Index));
+        }
+
         private double GetPriceBasedOnQuatity(ShoppingCart shoppingCart)
         {
             if (shoppingCart.Count <= 50)

@@ -14,6 +14,8 @@ namespace WebApp.DataAccess.Repository.IRepository
         ICompanyRepository Company { get; }
         IProductRepository Product { get; }
         IShoppingCartRepository ShoppingCart { get; }
+        IOrderHeaderRepository OrderHeader { get; }
+        IOrderDetailRepository OrderDetail { get; }
 
         void Save();
     }

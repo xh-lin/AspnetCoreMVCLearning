@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApp.DataAccess.Data;
 
@@ -10,9 +11,11 @@ using WebApp.DataAccess.Data;
 namespace WebApp.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231014222652_addOrderHeaderAndDetailToDb")]
+    partial class addOrderHeaderAndDetailToDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -395,9 +398,6 @@ namespace WebApp.DataAccess.Migrations
 
                     b.Property<string>("PostalCode")
                         .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("SessionId")
                         .HasColumnType("longtext");
 
                     b.Property<DateTime>("ShippingDate")

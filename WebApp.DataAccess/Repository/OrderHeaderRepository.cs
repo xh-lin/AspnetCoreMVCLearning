@@ -45,7 +45,7 @@ namespace WebApp.DataAccess.Repository
 				}
 				if (!string.IsNullOrEmpty(paymentIntentId))
 				{
-					orderFromDb.PaymentIntenId = paymentIntentId;
+					orderFromDb.PaymentIntentId = paymentIntentId;
 					orderFromDb.PaymentDate = DateTime.Now;
 				}
 			}

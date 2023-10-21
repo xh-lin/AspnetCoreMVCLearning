@@ -27,7 +27,7 @@ namespace WebApp.DataAccess.Repository
 			if (orderFromDb != null)
 			{
 				orderFromDb.OrderStatus = orderStatus;
-				if (string.IsNullOrEmpty(paymentStatus))
+				if (!string.IsNullOrEmpty(paymentStatus))
 				{
 					orderFromDb.PaymentStatus = paymentStatus;
 				}
@@ -45,7 +45,7 @@ namespace WebApp.DataAccess.Repository
 				}
 				if (!string.IsNullOrEmpty(paymentIntentId))
 				{
-					orderFromDb.PaymentIntenId = paymentIntentId;
+					orderFromDb.PaymentIntentId = paymentIntentId;
 					orderFromDb.PaymentDate = DateTime.Now;
 				}
 			}

@@ -23,13 +23,14 @@ namespace WebApp.Models
         public double OrderTotal { get; set; }
         public string? OrderStatus { get; set; }
         public string? PaymentStatus { get; set; }
+        public string? TrackingNumber { get; set; }
         public string? Carrier { get; set; }
 
         public DateTime PaymentDate { get; set; }
         public DateOnly PaymentDueDate { get; set; }
 
         public string? SessionId { get; set; }
-        public string? PaymentIntenId { get; set; }
+        public string? PaymentIntentId { get; set; }
 
         [Required]
         public string PhoneNumber { get; set; }

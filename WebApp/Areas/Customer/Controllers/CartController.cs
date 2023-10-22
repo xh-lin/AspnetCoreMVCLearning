@@ -181,6 +181,8 @@ namespace WebApp.Areas.Customer.Controllers
                     _unitOfWork.OrderHeader.UpdateStatus(id, SD.StatusApproved, SD.PaymentStatusApproved);
                     _unitOfWork.Save();
 				}
+
+                HttpContext.Session.Remove(SD.SessionCart);
 			}
 
             List<ShoppingCart> shoppingCarts = _unitOfWork.ShoppingCart

@@ -202,7 +202,7 @@ namespace WebApp.Areas.Customer.Controllers
 
         public IActionResult Minus(int cartId) 
         {
-            var cartromDb = _unitOfWork.ShoppingCart.Get(u => u.Id == cartId);
+            var cartromDb = _unitOfWork.ShoppingCart.Get(u => u.Id == cartId, tracked: true);
             if (cartromDb.Count <= 1)
             {
                 HttpContext.Session.SetInt32(SD.SessionCart,
@@ -221,7 +221,7 @@ namespace WebApp.Areas.Customer.Controllers
 
         public IActionResult Remove(int cartId) 
         {
-            var cartromDb = _unitOfWork.ShoppingCart.Get(u => u.Id == cartId);
+            var cartromDb = _unitOfWork.ShoppingCart.Get(u => u.Id == cartId, tracked: true);
 
             HttpContext.Session.SetInt32(SD.SessionCart,
                     _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == cartromDb.ApplicationUserId).Count()-1);

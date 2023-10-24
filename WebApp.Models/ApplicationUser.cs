@@ -23,5 +23,9 @@ namespace WebApp.Models
         [ValidateNever]
         [ForeignKey(nameof (CompanyId))]
         public Company? Company { get; set; }
+
+
+        [NotMapped]
+        public string? Role { get; set; }
     }
 }

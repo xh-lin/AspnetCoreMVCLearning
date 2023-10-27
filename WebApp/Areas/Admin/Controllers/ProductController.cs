@@ -59,30 +59,30 @@ namespace WebApp.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                string wwwRootPath = _webHostEnvironment.WebRootPath;
-                if (file != null)
-                {
-                    string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-                    string productPath = Path.Combine(wwwRootPath, @"images\product");
+                //string wwwRootPath = _webHostEnvironment.WebRootPath;
+                //if (file != null)
+                //{
+                //    string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                //    string productPath = Path.Combine(wwwRootPath, @"images\product");
 
-                    if (!string.IsNullOrWhiteSpace(productVM.Product.ImageUrl))
-                    {
-                        // delete old image
-                        string oldImagePath = Path.Combine(wwwRootPath, productVM.Product.ImageUrl.TrimStart('\\'));
+                //    if (!string.IsNullOrWhiteSpace(productVM.Product.ImageUrl))
+                //    {
+                //        // delete old image
+                //        string oldImagePath = Path.Combine(wwwRootPath, productVM.Product.ImageUrl.TrimStart('\\'));
 
-                        if (System.IO.File.Exists(oldImagePath))
-                        {
-                            System.IO.File.Delete(oldImagePath);
-                        }
-                    }
+                //        if (System.IO.File.Exists(oldImagePath))
+                //        {
+                //            System.IO.File.Delete(oldImagePath);
+                //        }
+                //    }
 
-                    using (var fileStream = new FileStream(Path.Combine(productPath, fileName), FileMode.Create))
-                    {
-                        file.CopyTo(fileStream);
-                    }
+                //    using (var fileStream = new FileStream(Path.Combine(productPath, fileName), FileMode.Create))
+                //    {
+                //        file.CopyTo(fileStream);
+                //    }
 
-                    productVM.Product.ImageUrl = @"\images\product\" + fileName;
-                }
+                //    productVM.Product.ImageUrl = @"\images\product\" + fileName;
+                //}
 
                 if (productVM.Product.Id == 0)
                 {
@@ -129,12 +129,12 @@ namespace WebApp.Areas.Admin.Controllers
                 return Json(new { success = false, message = "Error while deleting" });
             }
 
-            var oldImagePath = Path.Combine(_webHostEnvironment.WebRootPath, productToBeDeleted.ImageUrl.TrimStart('\\'));
+            //var oldImagePath = Path.Combine(_webHostEnvironment.WebRootPath, productToBeDeleted.ImageUrl.TrimStart('\\'));
 
-            if (System.IO.File.Exists(oldImagePath))
-            {
-                System.IO.File.Delete(oldImagePath);
-            }
+            //if (System.IO.File.Exists(oldImagePath))
+            //{
+            //    System.IO.File.Delete(oldImagePath);
+            //}
 
             _unitOfWork.Product.Remove(productToBeDeleted);
             _unitOfWork.Save();

@@ -20,6 +20,7 @@ namespace WebApp.DataAccess.Repository
         public IShoppingCartRepository ShoppingCart { get; private set; }
         public IOrderHeaderRepository OrderHeader { get; private set; }
         public IOrderDetailRepository OrderDetail { get; private set; }
+        public IProductImageRepository ProductImage { get; private set; }
 
         public UnitOfWork(ApplicationDbContext db)
         {
@@ -31,6 +32,7 @@ namespace WebApp.DataAccess.Repository
             ShoppingCart = new ShoppingCartRepository(db);
             OrderHeader = new OrderHeaderRepository(db);
             OrderDetail = new OrderDetailRepository(db);
+            ProductImage = new ProductImageRepository(db);
         }
 
         public void Save()

@@ -10,15 +10,15 @@ using WebApp.Models;
 
 namespace WebApp.DataAccess.Repository
 {
-    public class ApplicationUserRepository : Repository<ApplicationUser>, IApplicationUserRepository
+    public class ProductImageRepository : Repository<ProductImage>, IProductImageRepository
     {
-        public ApplicationUserRepository(ApplicationDbContext db) : base(db)
+        public ProductImageRepository(ApplicationDbContext db) : base(db)
         {
         }
 
-        public void Update(ApplicationUser obj)
+        public void Update(ProductImage obj)
         {
-            _db.ApplicationUsers.Update(obj);
+            _db.ProductImages.Update(obj);
         }
     }
 }

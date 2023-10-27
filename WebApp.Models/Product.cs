@@ -51,5 +51,8 @@ namespace WebApp.Models
         [ValidateNever]
         [ForeignKey("CategoryId")]
         public Category Category { get; set; }
+
+        [ValidateNever]
+        public List<ProductImage> ProductImages { get; set; }
     }
 }

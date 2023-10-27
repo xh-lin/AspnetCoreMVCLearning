@@ -48,7 +48,7 @@ namespace WebApp.Areas.Admin.Controllers
             if (id != null && id != 0)
             {
                 // update
-                productVM.Product = _unitOfWork.Product.Get(o => o.Id == id);
+                productVM.Product = _unitOfWork.Product.Get(o => o.Id == id, includeProperties: nameof(Product.ProductImages));
             }
 
             return View(productVM);
